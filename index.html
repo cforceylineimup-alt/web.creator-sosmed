@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<title>Saluran Liliyana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= AUTH ================= -->
+<div id="auth" hidden>
+  <div class="acard">
+    <div class="logo"><svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></div>
+    <h1>Saluran Liliyana</h1>
+
+    <div id="vChoose">
+      <p class="sub">Saluran resmi Liliyana De Zenith.<br>Masuk untuk melihat postingan terbaru.</p>
+      <button class="btn" id="btnVisitor">Masuk sebagai Pengunjung</button>
+      <button class="btn ghost" id="btnAdminOpen">Masuk sebagai Admin</button>
+    </div>
+
+    <div id="vAdmin" hidden>
+      <p class="sub">Khusus Liliyana De Zenith.</p>
+      <div class="tabs">
+        <button id="tabLogin" class="on" type="button">Masuk</button>
+        <button id="tabReg" type="button">Daftar</button>
+      </div>
+
+      <div id="formLogin">
+        <div class="field"><input id="lgId" placeholder=" " autocomplete="username"><label for="lgId">Nama pengguna atau Gmail</label></div>
+        <div class="field"><input id="lgPw" type="password" placeholder=" " autocomplete="current-password"><label for="lgPw">Password</label></div>
+        <div class="err" id="lgErr" role="alert"></div>
+        <button class="btn" id="btnLogin">Masuk</button>
+      </div>
+
+      <div id="formReg" hidden>
+        <div class="field"><input id="rgUser" placeholder=" " autocomplete="username"><label for="rgUser">Nama pengguna</label></div>
+        <div class="field"><input id="rgMail" type="email" placeholder=" " autocomplete="email"><label for="rgMail">Gmail</label></div>
+        <div class="field"><input id="rgPw" type="password" placeholder=" " autocomplete="new-password"><label for="rgPw">Password</label></div>
+        <div class="err" id="rgErr" role="alert"></div>
+        <button class="btn" id="btnReg">Daftar</button>
+      </div>
+      <button class="btn ghost" id="btnBack">Kembali</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= APP ================= -->
+<div id="app" hidden>
+  <aside id="sidebar">
+    <div class="shead">
+      <button class="ib" id="menuBtn" aria-label="Menu" data-ic="menu"></button>
+      <label class="sbox"><span data-ic="search"></span><input id="sideSearch" placeholder="Cari" autocomplete="off"></label>
+    </div>
+    <div id="list"></div>
+    <button class="fab" id="fab" aria-label="Saluran baru" data-ic="plus" hidden></button>
+  </aside>
+
+  <main id="chat">
+    <div id="noChat"><span>Pilih saluran untuk mulai membaca</span></div>
+    <div id="chatMain" hidden>
+      <div class="top">
+        <button class="ib" id="backBtn" aria-label="Kembali" data-ic="back"></button>
+        <button class="who" id="whoBtn" aria-label="Info saluran"></button>
+        <button class="ib" id="searchBtn" aria-label="Cari pesan" data-ic="search"></button>
+        <button class="ib" id="moreBtn" aria-label="Lainnya" data-ic="more"></button>
+      </div>
+      <div id="searchbar" hidden>
+        <input id="msgSearch" placeholder="Cari di saluran" autocomplete="off">
+        <span class="cnt" id="msgCnt"></span>
+        <button class="ib" id="searchClose" aria-label="Tutup pencarian" data-ic="close"></button>
+      </div>
+      <div id="pinbar" hidden></div>
+      <div id="feed"><div class="wrap" id="feedIn"></div></div>
+      <div id="composer"></div>
+    </div>
+  </main>
+
+  <aside id="info">
+    <div class="top">
+      <button class="ib" id="infoClose" aria-label="Tutup" data-ic="close"></button>
+      <h3>Info Saluran</h3>
+      <button class="ib" id="infoEdit" aria-label="Edit saluran" data-ic="edit" hidden></button>
+    </div>
+    <div id="infoBody"></div>
+  </aside>
+</div>
+
+<!-- Drawer -->
+<div id="scrim"></div>
+<nav id="drawer" aria-label="Menu"></nav>
+
+<!-- Modal: profil (admin dan pengunjung) -->
+<div class="ov" id="mProfile">
+  <div class="sheet">
+    <h3>Edit profil</h3>
+    <div class="pick" id="pfPick" tabindex="0" role="button" aria-label="Ganti foto profil"></div>
+    <div class="field"><input id="pfName" placeholder=" " maxlength="40"><label for="pfName">Nama</label></div>
+    <div class="field" id="pfUserW"><input id="pfUser" placeholder=" " maxlength="30"><label for="pfUser">Nama pengguna</label></div>
+    <div class="field" id="pfBioW"><textarea id="pfBio" placeholder=" " maxlength="140"></textarea><label for="pfBio">Bio</label></div>
+    <div class="field" id="pfMailW"><input id="pfMail" placeholder=" " disabled><label for="pfMail">Gmail</label></div>
+    <div class="err" id="pfErr" role="alert"></div>
+    <div class="srow"><button data-close="mProfile">Batal</button><button class="pri" id="pfSave">Simpan</button></div>
+  </div>
+</div>
+
+<!-- Modal: saluran (baru / edit) -->
+<div class="ov" id="mChannel">
+  <div class="sheet">
+    <h3 id="chTitle">Edit saluran</h3>
+    <div class="pick" id="chPick" tabindex="0" role="button" aria-label="Ganti foto saluran"></div>
+    <div class="field"><input id="chName" placeholder=" " maxlength="50"><label for="chName">Nama saluran</label></div>
+    <div class="field"><textarea id="chDesc" placeholder=" " maxlength="255"></textarea><label for="chDesc">Deskripsi</label></div>
+    <div class="field"><input id="chUser" placeholder=" " maxlength="30"><label for="chUser">Nama pengguna saluran</label></div>
+    <div class="err" id="chErr" role="alert"></div>
+    <div class="srow"><button class="danger left" id="chDel" hidden>Hapus saluran</button><button data-close="mChannel">Batal</button><button class="pri" id="chSave">Simpan</button></div>
+  </div>
+</div>
+
+<!-- Modal: pengaturan -->
+<div class="ov" id="mSettings">
+  <div class="sheet">
+    <h3>Pengaturan</h3>
+    <div class="hms" aria-live="off">
+      <div><b id="cH">00</b><span>Jam</span></div>
+      <div><b id="cM">00</b><span>Menit</span></div>
+      <div><b id="cS">00</b><span>Detik</span></div>
+    </div>
+    <div class="clk-d" id="clkDate"></div>
+    <div class="clk-z" id="clkZone"></div>
+    <div class="row act" data-act="togSec" role="switch" tabindex="0" id="rowSec"><div class="rm"><div class="rt">Tampilkan detik di waktu pesan</div><div class="rs">Contoh: 14:05:33</div></div><div class="sw" id="swSec"></div></div>
+    <div class="row act" data-act="tog24" role="switch" tabindex="0" id="row24"><div class="rm"><div class="rt">Format 24 jam</div><div class="rs">Matikan untuk format AM/PM</div></div><div class="sw" id="sw24"></div></div>
+    <div class="row"><div class="rm"><div class="rt">Penyimpanan data</div><div class="rs sync" id="syncState"></div></div></div>
+    <div class="srow"><button class="pri" data-close="mSettings">Selesai</button></div>
+  </div>
+</div>
+
+<!-- Modal: konfirmasi -->
+<div class="ov" id="mConfirm">
+  <div class="sheet">
+    <h3 id="cfTitle">Hapus pesan?</h3>
+    <p id="cfText">Pesan ini akan dihapus dari saluran untuk semua pengunjung.</p>
+    <div class="srow"><button data-close="mConfirm">Batal</button><button class="danger" id="cfOk">Hapus</button></div>
+  </div>
+</div>
+
+<div class="ov" id="viewer"><img alt="Foto postingan"></div>
+<input type="file" id="fileIn" accept="image/*" hidden>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
